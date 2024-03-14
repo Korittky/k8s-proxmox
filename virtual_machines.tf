@@ -39,7 +39,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cp_01" {
     user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
     ip_config {
       ipv4 {
-        address = "192.168.178.149/24"
+        address = "dhcp"
       }
     }
   }
