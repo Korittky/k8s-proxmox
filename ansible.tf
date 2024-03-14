@@ -1,8 +1,9 @@
 resource "local_file" "ansible_inventory" {
   filename = "./ansible/inventory.ini"
   content     = <<-EOF
-  k8s-cp-01 ansible_host=${proxmox_virtual_environment_vm.k8s_cp_01.ipv4_addresses[1][0]} ansible_become=true
-  k8s-worker-01 ansible_host=${proxmox_virtual_environment_vm.k8s_worker_01.ipv4_addresses[1][0]} ansible_become=true
+  [all]
+  k8s-cp-01 ansible_host=${proxmox_virtual_environment_vm.k8s_cp_01.ipv4_addresses[1][0]} ip=${proxmox_virtual_environment_vm.k8s_cp_01.ipv4_addresses[1][0]} ansible_become=true
+  k8s-worker-01 ansible_host=${proxmox_virtual_environment_vm.k8s_worker_01.ipv4_addresses[1][0]} ip=${proxmox_virtual_environment_vm.k8s_worker_01.ipv4_addresses[1][0]} ansible_become=true
 
   [kube_control_plane]
   k8s-cp-01
@@ -17,6 +18,7 @@ resource "local_file" "ansible_inventory" {
   kube_node
   kube_control_plane
 
+  [calico-rr]
   EOF
 
   provisioner "local-exec" {
