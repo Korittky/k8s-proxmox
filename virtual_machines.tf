@@ -5,6 +5,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cp_01" {
   node_name   = "pve"
 
   cpu {
+    type = "host"
     cores = 2
   }
 
@@ -23,7 +24,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cp_01" {
 
   disk {
     datastore_id = "local-zfs"
-    file_id      = proxmox_virtual_environment_file.debian_cloud_image.id
+    file_id      = proxmox_virtual_environment_file.rocky_linux_minimal.id
     interface    = "scsi0"
     size         = 22
   }
@@ -50,9 +51,9 @@ resource "proxmox_virtual_environment_vm" "k8s_worker_01" {
   description = "Managed by Terraform"
   tags        = ["terraform"]
   node_name   ="pve"
-  mac_addresses = ["00:00:00:00:00:00", "BC:24:11:8C:5E:95"]
 
   cpu {
+    type = "host"
     cores = 1
   }
 
@@ -71,7 +72,7 @@ resource "proxmox_virtual_environment_vm" "k8s_worker_01" {
 
   disk {
     datastore_id = "local-zfs"
-    file_id      = proxmox_virtual_environment_file.debian_cloud_image.id
+    file_id      = proxmox_virtual_environment_file.rocky_linux_minimal.id
     interface    = "scsi0"
     size         = 22
   }

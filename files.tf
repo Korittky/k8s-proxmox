@@ -9,6 +9,17 @@ resource "proxmox_virtual_environment_file" "debian_cloud_image" {
   }
 }
 
+resource "proxmox_virtual_environment_file" "rocky_linux_minimal" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "pve"
+
+  source_file {
+    path      = "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-9-latest.x86_64.qcow2"
+    file_name = "CentOS-Stream-GenericCloud-9-latest.x86_64.img"
+  }
+}
+#https://dl.rockylinux.org/pub/rocky/9.3/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2
 data "local_file" "ssh_public_key" {
   filename = "./terraform_rsa.pub"
 }
