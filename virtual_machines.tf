@@ -26,7 +26,8 @@ resource "proxmox_virtual_environment_vm" "k8s_cp_01" {
     datastore_id = "local-zfs"
 #    file_id      = proxmox_virtual_environment_file.open_suse.id
 #    datastore_id = "local-lvm"
-    file_id      = "local:iso/openSUSE-Leap-15.6.x86_64-1.0.0-NoCloud-Build3.311.img"
+#    file_id      = "local:iso/openSUSE-Leap-15.6.x86_64-1.0.0-NoCloud-Build3.311.img"
+    file_id      = "local:iso/debian-12-genericcloud.img"
     interface    = "scsi0"
     size         = 22
   }
@@ -75,7 +76,8 @@ resource "proxmox_virtual_environment_vm" "k8s_worker_01" {
   disk {
     datastore_id = "local-zfs"
 #    file_id      = proxmox_virtual_environment_file.open_suse.id
-    file_id      = "local:iso/openSUSE-Leap-15.6.x86_64-1.0.0-NoCloud-Build3.311.img"
+#    file_id      = "local:iso/openSUSE-Leap-15.6.x86_64-1.0.0-NoCloud-Build3.311.img"
+    file_id      = "local:iso/debian-12-genericcloud.img"
     interface    = "scsi0"
     size         = 22
   }
